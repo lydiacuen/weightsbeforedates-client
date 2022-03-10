@@ -23,7 +23,7 @@ export const signIn = (email, password) => {
 export const signOut = user => {
   return axios.delete(apiUrl + '/sign-out/', {
     headers: {
-      Authorization: `Bearer ${user.token}`
+      Authorization: `Token ${user.token}`
     }
   })
 }
@@ -39,7 +39,7 @@ export const changePassword = (oldPassword, newPassword, user) => {
     },
     {
       headers: {
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Token ${user.token}`
       }
     }
   )

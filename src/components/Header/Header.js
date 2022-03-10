@@ -6,6 +6,10 @@ import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
   <>
+    <NavLink to='/buffposts' className='nav-link'>Buff Posts</NavLink>
+    <NavLink to='/buffposts/create' className='nav-link'>Post a Buff Post</NavLink>
+    <NavLink to='/comments' className='nav-link'>Comments</NavLink>
+    <NavLink to='/comments/create' className='nav-link'>Comment on a Buff Post</NavLink>
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </>
@@ -28,7 +32,7 @@ const Header = ({ user }) => (
   <Navbar bg='primary' variant='dark' expand='md'>
     <Container>
       <Navbar.Brand>
-        <Link to='/' style={{ color: '#FFF', textDecoration: 'none' }}>react-auth-template</Link>
+        <Link to='/' style={{ color: '#FFF', textDecoration: 'none' }}>Weights Before Dates</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
