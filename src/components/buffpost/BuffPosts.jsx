@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { indexBuffPost } from '../../api/buffpost'
-import { Spinner, Button } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 
 const BuffPosts = ({ user, msgAlert }) => {
   const [buffposts, setBuffPosts] = useState([])
@@ -17,7 +17,7 @@ const BuffPosts = ({ user, msgAlert }) => {
         setBuffPosts(res.data.buffposts)
       } catch (error) {
         msgAlert({
-          heading: 'Buffposts failed with error',
+          heading: 'Buffposts Feed Failed to Load',
           message: error.message,
           variant: 'danger'
         })
@@ -25,10 +25,6 @@ const BuffPosts = ({ user, msgAlert }) => {
     }
     fetchData()
   }, [])
-
-  const handleNavigateCreate = () => {
-    setNavigateCreate(true)
-  }
 
   console.log('buffpost ', buffposts)
 

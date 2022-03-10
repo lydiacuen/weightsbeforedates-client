@@ -8,7 +8,7 @@ const BuffPost = ({ user, msgAlert }) => {
   const [buffpost, setBuffPost] = useState({})
   const [deleted, setDeleted] = useState(false)
   const { id } = useParams()
-  const [shouldNavigate, setShouldNavigate] = useState(false)
+  //const [shouldNavigate, setShouldNavigate] = useState(false)
 
   if (!user) return <Navigate to='/' />
 
@@ -17,7 +17,7 @@ const BuffPost = ({ user, msgAlert }) => {
       try {
         const res = await getOneBuffPost(user, id)
         console.log('res ', res.data)
-        setBuffPost(res.data.BuffPost)
+        setBuffPost(res.data.buffpost)
       } catch (error) {
         msgAlert({
           heading: 'Buffpost unable to load',
@@ -31,17 +31,11 @@ const BuffPost = ({ user, msgAlert }) => {
 
   const onDeleteBuffPost = async () => {
     try {
-      await deleteBuffPost(user, id).setDeleted(true),
-        setShouldNavigate(true),
-        msgAlert({
-          heading: 'Buffpost Deleted Successfully',
-          message: buffpostDeleteSuccess,
-          variant: 'success'
-        })
-      )
+      await deleteBuffPost(user, id)
+      setDeleted(true)
     } catch (error) {
       msgAlert({
-        heading: 'Unable to Delete Buffpost',
+        heading: 'Failed to delete Buff Post',
         message: error.message,
         variant: 'danger'
       })
