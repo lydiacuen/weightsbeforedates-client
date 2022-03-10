@@ -20,7 +20,7 @@ const BuffPost = ({ user, msgAlert }) => {
         setBuffPost(res.data.BuffPost)
       } catch (error) {
         msgAlert({
-          heading: 'Buffpost failed to load',
+          heading: 'Buffpost unable to load',
           message: error.message,
           variant: 'danger'
         })
@@ -31,8 +31,7 @@ const BuffPost = ({ user, msgAlert }) => {
 
   const onDeleteBuffPost = async () => {
     try {
-      await deleteBuffPost(user, id).then(
-        delete user.buffpost,
+      await deleteBuffPost(user, id).setDeleted(true),
         setShouldNavigate(true),
         msgAlert({
           heading: 'Buffpost Deleted Successfully',
@@ -42,7 +41,7 @@ const BuffPost = ({ user, msgAlert }) => {
       )
     } catch (error) {
       msgAlert({
-        heading: 'Failed to Delete Buffpost',
+        heading: 'Unable to Delete Buffpost',
         message: error.message,
         variant: 'danger'
       })
@@ -56,7 +55,7 @@ const BuffPost = ({ user, msgAlert }) => {
   if (!buffpost) {
     return (
       <Spinner animation='border' role='status'>
-        <span className='visually-hidden'>Loading...</span>
+        <span className='visually-hidden'>Loading Buff Posts...</span>
       </Spinner>
     )
   } else if (deleted) {
@@ -66,15 +65,12 @@ const BuffPost = ({ user, msgAlert }) => {
       <>
         <div className='row'>
           <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-            <h1>Type: {buffpost.type}</h1>
-            <h3>Buffpost: {account.account_number}</h3>
-            <h3>Company: {account.company}</h3>
-            <h3>Balance: {account.balance}</h3>
-            <h3>Inception: {account.inception}</h3>
+            <h1>Content: {buffpost.content}</h1>
+            <h3>Image: {buffpost.image}</h3>
 
-            <Button variant='danger' onClick={onDeleteBuffPost}>Delete Account</Button>
-            <Link to={`/accounts/${id}/edit`}>
-              <Button variant='primary' type='submit'>Update Account</Button>
+            <Button variant='danger' onClick={onDeleteBuffPost}>Delete Buff Post</Button>
+            <Link to={`/buffposts/${id}/edit`}>
+              <Button variant='primary' type='submit'>Edit Buff Post</Button>
             </Link>
           </div>
         </div>
@@ -83,4 +79,4 @@ const BuffPost = ({ user, msgAlert }) => {
   }
 }
 
-export default Account
+export default BuffPost
