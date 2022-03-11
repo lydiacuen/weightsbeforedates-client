@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Spinner, Button } from 'react-bootstrap'
 
-import { deleteBuffPost, getOneBuffPost } from '../../api/buffpost'
+import { deleteBuffPost, getBuffPostById } from '../../api/buffposts'
 
 const BuffPost = ({ user, msgAlert }) => {
   const [buffpost, setBuffPost] = useState({})
@@ -14,7 +14,7 @@ const BuffPost = ({ user, msgAlert }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getOneBuffPost(user, id)
+        const res = await getBuffPostById(user, id)
         console.log('res ', res.data)
         setBuffPost(res.data.buffpost)
       } catch (error) {

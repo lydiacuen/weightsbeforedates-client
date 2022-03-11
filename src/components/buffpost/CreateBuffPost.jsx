@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
-
-import { createBuffPost } from '../../api/buffpost'
+import { createBuffPost } from '../../api/buffposts'
 
 const CreateBuffPost = ({ user, msgAlert }) => {
   const [buffpost, setBuffPost] = useState({

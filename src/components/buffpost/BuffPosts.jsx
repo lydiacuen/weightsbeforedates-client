@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { indexBuffPost } from '../../api/buffpost'
+import { getBuffPost } from '../../api/buffposts'
 import { Spinner } from 'react-bootstrap'
 
 const BuffPosts = ({ user, msgAlert }) => {
@@ -12,7 +12,7 @@ const BuffPosts = ({ user, msgAlert }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await indexBuffPost(user)
+        const res = await getBuffPost(user)
         console.log('res ', res.data)
         setBuffPosts(res.data.buffposts)
       } catch (error) {
