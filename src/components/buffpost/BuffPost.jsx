@@ -8,7 +8,6 @@ const BuffPost = ({ user, msgAlert }) => {
   const [buffpost, setBuffPost] = useState({})
   const [deleted, setDeleted] = useState(false)
   const { id } = useParams()
-  //const [shouldNavigate, setShouldNavigate] = useState(false)
 
   if (!user) return <Navigate to='/' />
 
@@ -40,10 +39,6 @@ const BuffPost = ({ user, msgAlert }) => {
         variant: 'danger'
       })
     }
-  }
-
-  if (shouldNavigate) {
-    return <Navigate to='/' />
   }
 
   if (!buffpost) {

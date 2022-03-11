@@ -5,7 +5,7 @@ import { Spinner } from 'react-bootstrap'
 
 const BuffPosts = ({ user, msgAlert }) => {
   const [buffposts, setBuffPosts] = useState([])
-  const [navigateCreate, setNavigateCreate] = useState(false)
+  const [navigateCreate] = useState(false)
 
   if (!user) return <Navigate to ='/' />
 
