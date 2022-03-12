@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/weightsbeforedates-client/static/css/main.825c49c7.chunk.css",
+    "main.js": "/weightsbeforedates-client/static/js/main.6dfd7fd9.chunk.js",
+    "main.js.map": "/weightsbeforedates-client/static/js/main.6dfd7fd9.chunk.js.map",
+    "runtime-main.js": "/weightsbeforedates-client/static/js/runtime-main.f864f903.js",
+    "runtime-main.js.map": "/weightsbeforedates-client/static/js/runtime-main.f864f903.js.map",
+    "static/js/2.66873f7e.chunk.js": "/weightsbeforedates-client/static/js/2.66873f7e.chunk.js",
+    "static/js/2.66873f7e.chunk.js.map": "/weightsbeforedates-client/static/js/2.66873f7e.chunk.js.map",
+    "index.html": "/weightsbeforedates-client/index.html",
+    "static/css/main.825c49c7.chunk.css.map": "/weightsbeforedates-client/static/css/main.825c49c7.chunk.css.map",
+    "static/js/2.66873f7e.chunk.js.LICENSE.txt": "/weightsbeforedates-client/static/js/2.66873f7e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f864f903.js",
+    "static/js/2.66873f7e.chunk.js",
+    "static/css/main.825c49c7.chunk.css",
+    "static/js/main.6dfd7fd9.chunk.js"
+  ]
+}
