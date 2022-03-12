@@ -8,8 +8,6 @@ const authenticatedOptions = (
   <>
     <NavLink to='/buffposts' className='nav-link'>Buff Posts</NavLink>
     <NavLink to='/buffposts/create' className='nav-link'>Post a Buff Post</NavLink>
-    <NavLink to='/comments' className='nav-link'>Comments</NavLink>
-    <NavLink to='/comments/create' className='nav-link'>Comment on a Buff Post</NavLink>
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </>

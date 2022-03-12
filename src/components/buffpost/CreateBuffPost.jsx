@@ -4,67 +4,59 @@ import { Form, Button } from 'react-bootstrap'
 import { createBuffPost } from '../../api/buffposts'
 
 const CreateBuffPost = ({ user, msgAlert }) => {
-  const [buffpost, setBuffPost] = useState({
-    content: '',
-    image: ''
-  })
-  const [createdId, setCreatedId] = useState('')
+  const [shouldNavigate, setShouldNavigate] = useState(false)
+  const [content, setContent] = useState('')
+  const [image, setImage] = useState('')
 
-  console.log('buffpost data ', buffpost)
-
-  const handleSubmit = async event => {
+  const onCreateBuffPost = async event => {
     event.preventDefault()
 
     try {
-      const res = await createBuffPost(user, buffpost)
-      console.log('res ', res.data.buffpost)
-      setCreatedId(res.data.buffpost.id)
-
+      await createBuffPost(user, content, image)
       msgAlert({
-        heading: 'Buff Post Created',
-        message: `Created ${buffpost.content} successfully.`,
+        heading: 'Buffpost Created!',
+        message: `Buffpost ${content} posted on Buff Post Feed!`,
         variant: 'success'
       })
+      setShouldNavigate(true)
     } catch (error) {
       msgAlert({
-        heading: 'Failed to create buff post',
-        message: error.message,
+        heading: 'Create Buff Post Failed: ' + error.message,
+        message: 'Failed to post the buff post',
         variant: 'danger'
       })
     }
   }
 
-  if (!user) {
+  if (!user || shouldNavigate) {
     return <Navigate to='/' />
-  } else if (createdId) {
-    return <Navigate to={`/buffposts/${createdId}`} />
   }
+
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
         <h3>Create Buff Post</h3>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId='content'>
-            <Form.Label>Content</Form.Label>
+        <Form onSubmit={onCreateBuffPost}>
+          <Form.Group className='mb-4' controlId='content'>
+            <Form.Label>Buff Post Content</Form.Label>
             <Form.Control
-              placeholder='Buff Post Content'
-              type='content'
-              value={buffpost.content}
-              onChange={event =>
-                setBuffPost(prev => ({ ...prev, type: event.target.value }))
-              }
+              required
+              content='content'
+              // type='text'
+              placeholder='Add your buff post here'
+              value={content}
+              onChange={event => setContent(event.target.value)}
             />
           </Form.Group>
-
-          <Form.Group controlId='image'>
-            <Form.Label>Image</Form.Label>
+          <Form.Group className='mb-4' controlId='image'>
+            <Form.Label>Buff Post Image</Form.Label>
             <Form.Control
-              placeholder='Image'
+              required
               image='image'
-              value={buffpost.image}
-              onChange={event =>
-                setBuffPost(prev => ({ ...prev, image: event.target.value }))
-              }
+              // type='text'
+              placeholder='Add your buff post image here'
+              value={image}
+              onChange={event => setImage(event.target.value)}
             />
           </Form.Group>
 
@@ -72,9 +64,6 @@ const CreateBuffPost = ({ user, msgAlert }) => {
             Submit
           </Button>
         </Form>
-        handleSubmit={handleSubmit}
-        buffpost={buffpost}
-        setBuffPost={setBuffPost}
       </div>
     </div>
   )

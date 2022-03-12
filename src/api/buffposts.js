@@ -1,6 +1,19 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
+export const createBuffPost = (user, content, image) => {
+  return axios.post(apiUrl + '/buffposts/create/', {
+    buffpost: {
+      content,
+      image
+    }
+  }, {
+    headers: {
+      Authorization: `Token ${user.token}`
+    }
+  })
+}
+
 export const getBuffPost = (user) => {
   return axios.get(apiUrl + '/buffposts/', {
     headers: {
@@ -17,19 +30,6 @@ export const getBuffPostById = (user, id) => {
   })
 }
 
-export const createBuffPost = (user, content, image) => {
-  console.log('user', user)
-  return axios.post(apiUrl + '/buffposts/create/', {
-    buffpost: {
-      content,
-      image
-    }
-  }, {
-    headers: {
-      Authorization: `Token ${user.token}`
-    }
-  })
-}
 export const updateBuffPost = (user, id, content, image) => {
   return axios.patch(
     apiUrl + `/buffposts/${id}/`, {
