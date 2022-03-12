@@ -7,7 +7,7 @@ const BuffPosts = ({ user, msgAlert }) => {
   const [buffposts, setBuffPosts] = useState([])
   const [navigateCreate] = useState(false)
 
-  if (!user) return <Navigate to ='/' />
+  if (!user) return <Navigate to='/' />
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,9 @@ const BuffPosts = ({ user, msgAlert }) => {
   } else {
     const buffPostFeed = buffposts.map(buffpost => (
       <li key={buffpost.id}>
-        <Link to={`/buffposts/${buffpost.id}`}>{buffpost.content} - {buffpost.image}</Link>
+        <Link to={`/buffposts/${buffpost.id}`}>
+          {buffpost.content} - {buffpost.image} -  <button className='btn btn-primary'>Buff💪Like</button>
+        </Link>
       </li>
     ))
     return (
@@ -53,7 +55,6 @@ const BuffPosts = ({ user, msgAlert }) => {
           </div>
         </div>
       </>
-
     )
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // We have imported some custom styling for this alert
 // Which will be off-topic, unless extra time at the end of the lesson.
-import './AutoDismissAlert.scss'
+// import './AutoDismissAlert.scss'
 import Alert from 'react-bootstrap/Alert'
 
 function AutoDismissAlert ({ variant, heading, message }) {

@@ -10,11 +10,16 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 
-import Home from './components/Home'
+import Home from './Home'
 import BuffPosts from './components/buffpost/BuffPosts'
 import BuffPost from './components/buffpost/BuffPost'
 import CreateBuffPost from './components/buffpost/CreateBuffPost'
 import UpdateBuffPost from './components/buffpost/UpdateBuffPost'
+import Profiles from './components/profiles/Profiles'
+import Profile from './components/profiles/Profile'
+import CreateProfile from './components/profiles/CreateProfile'
+import UpdateProfile from './components/profiles/UpdateProfile'
+import Rules from './components/Rules'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -41,6 +46,29 @@ const App = () => {
       ))}
       <main className='container'>
         <Routes>
+          <Route
+            path='/profiles/'
+            element={<Profiles msgAlert={msgAlert} user={user} />}
+          />
+          <Route
+            path='/profiles/:id'
+            element={<Profile msgAlert={msgAlert} user={user} />}
+          />
+          <Route
+            path='/profiles/create'
+            element={
+              <CreateProfile
+                user={user}
+                setUser={setUser}
+                msgAlert={msgAlert}
+              />
+            }
+          />
+          <Route
+            path='/profiles/:id/update'
+            element={<UpdateProfile msgAlert={msgAlert} user={user} />}
+          />
+          <Route path='/rules' element={<Rules />} />
           <Route
             path='/sign-up'
             element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

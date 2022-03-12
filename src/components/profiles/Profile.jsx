@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Spinner, Button } from 'react-bootstrap'
 
-import { deleteBuffPost, getBuffPostById } from '../../api/buffposts'
+import { deleteProfile, getProfileById } from '../../api/profiles'
 
-const BuffPost = ({ user, msgAlert }) => {
-  const [buffpost, setBuffPost] = useState({})
+const Profile = ({ user, msgAlert }) => {
+  const [profile, setProfile] = useState({})
   //   const [content, setContent] = useState({})
   //   const [image, setImage] = useState({})
   const [deleted, setDeleted] = useState(false)
-  //   const [showBuffPostUpdate, setShowBuffPostUpdate] = useState(false)
+  //   const [showProfileUpdate, setShowProfileUpdate] = useState(false)
   const { id } = useParams()
 
   if (!user) return <Navigate to='/' />
@@ -17,57 +17,56 @@ const BuffPost = ({ user, msgAlert }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getBuffPostById(user, id)
+        const res = await getProfileById(user, id)
         console.log('res ', res.data)
-        setBuffPost(res.data.buffpost)
-        return res.date.buffpost.id
+        setProfile(res.data.profile)
+        return res.date.profile.id
       } catch (error) {
-        // kept having an error when I uncomment the code below. Will work on it once i turn in my project :)
         msgAlert({
-          heading: 'Buff Post Loaded'
-          //   message: error.message,
-          //   variant: 'danger'
+          heading: 'Buff Profile Loaded'
+          // message: error.message,
+          // variant: 'danger'
         })
       }
     }
     fetchData()
   }, [])
 
-  const onDeleteBuffPost = async () => {
+  const onDeleteProfile = async () => {
     try {
-      await deleteBuffPost(user, id)
+      await deleteProfile(user, id)
       setDeleted(true)
     } catch (error) {
       msgAlert({
-        heading: 'Failed to delete Buff Post',
+        heading: 'Failed to delete Profile',
         message: error.message,
         variant: 'danger'
       })
     }
   }
 
-  if (!buffpost) {
+  if (!profile) {
     return (
       <Spinner animation='border' role='status'>
         <span className='visually-hidden'>Loading Buff Posts...</span>
       </Spinner>
     )
   } else if (deleted) {
-    return <Navigate to='/buffposts/' />
+    return <Navigate to='/profiles/' />
   } else {
     return (
       <>
         <div className='row'>
           <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-            <h1>Content: {buffpost.content}</h1>
-            <h3>Image: {buffpost.image}</h3>
+            <h1>Buff Name: {profile.name}</h1>
+            <h3>About Me: {profile.about}</h3>
 
-            <Button variant='danger' onClick={onDeleteBuffPost}>
-              Delete Buff Post
+            <Button variant='danger' onClick={onDeleteProfile}>
+              Delete Profile
             </Button>
-            <Link to={`/buffposts/${id}/update`}>
+            <Link to={`/profiles/${id}/update`}>
               <Button variant='primary' type='submit'>
-                Update Buff Post
+                Update Profile
               </Button>
             </Link>
           </div>
@@ -77,4 +76,4 @@ const BuffPost = ({ user, msgAlert }) => {
   }
 }
 
-export default BuffPost
+export default Profile
